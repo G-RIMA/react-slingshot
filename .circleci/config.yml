@@ -1,12 +1,12 @@
 version: 2.1
 
-defaults: $defaults
+default: &default
   docker:
     - image: circleci/node:13.8.0
 
 jobs:
   build:
-    <<: *defaults
+    <<: *default
     steps:
       - checkout
       - run: npm i
@@ -16,7 +16,7 @@ jobs:
             - /src
       - run: npm run lint 
   test:
-    <<: *defaults
+    <<: *default
     steps:
       - checkout
       - restore_cache:
